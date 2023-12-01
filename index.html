@@ -11,5 +11,46 @@
 <body>
     
 </body>
-<script></script>
+<script>
+    const canvas = document.getElementById("myCanvas");
+let ctx = canvas.getContext("2d");
+
+const CW = canvas.width;
+const CH = canvas.height;
+const halfCW = CW / 2;
+const halfCH = CH / 2;
+
+function drawCircle(x, y, r, startA, endA, color) {
+  ctx.beginPath();
+  ctx.lineWidth = 10;
+  ctx.fillStyle = color;
+  ctx.arc(x, y, r, startA, endA);
+  ctx.fill();
+  ctx.stroke();
+}
+
+let isWinking = false;
+
+function wink() {
+  drawCircle(halfCW, halfCH, 100, 0, Math.PI * 2, "yellow");
+  drawCircle(halfCW - 30, halfCH - 30, 20, 0, Math.PI * 2, "black");
+ if (isWinking) {
+    ctx.fillRect(halfCW + 10, halfCH - 30, 40, 20);
+  } else {
+    drawCircle(halfCW + 30, halfCH - 30, 20, 0, Math.PI * 2, "black");
+  }
+  isWinking = !isWinking;
+  
+  ctx.beginPath();
+  ctx.arc(250, 150, 50, 0, Math.PI);
+ctx.lineWidth = 20;
+ctx.stroke();
+ctx.fillStyle = "red";
+ctx.fill();
+}
+
+
+
+
+</script>
 </html>
